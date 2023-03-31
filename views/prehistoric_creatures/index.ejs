@@ -2,12 +2,30 @@
 
 <h1>welcome to the prehistoric creature page of the dino app 😎</h1>
 
+<form method="GET" action="/prehistoric_creatures">
+  <label for="prehistoricCreatureSearch">Search:</label>
+  <input
+    type="text"
+    placeholder="search prehistoric creature name..."
+    name="prehistoricCreatureFilter"
+  />
+
+  <button type="submit">search</button>
+</form>
+
 <ul>
   <% prehistoricCreatures.forEach((prehistoricCreature, i) => { %>
   <li>
     <a href="<%= prehistoricCreature.img_url %>">
       <%= prehistoricCreature.type %></a
     >
+    <form
+      method="POST"
+      action="/prehistoric_creatures/<%= i %>/?_method=DELETE"
+    >
+      <input type="submit" value="Delete" />
+    </form>
+    <a href="/prehistoric_creatures/edit/<%= i %>"><button>Edit</button></a>
   </li>
   <% }) %>
 </ul>

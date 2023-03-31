@@ -2,12 +2,11 @@
 
 <h1>details about prehistoric creature <%= id %>:</h1>
 
-<h2>Name:</h2>
+<h2><%= prehistoricCreature.type %></h2>
 
-<p><%= prehistoricCreature.name %></p>
-
-<h2>Type:</h2>
-
-<p><%= prehistoricCreature.type %></p>
+<img
+  src="<%= prehistoricCreature.img_url %>"
+  alt="<%= prehistoricCreature.type %>"
+/>
 
 <%- include("../partials/footer.ejs") %>

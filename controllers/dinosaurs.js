@@ -10,7 +10,16 @@ const readDinos = () => {
 
 // GET /dinosaurs -- READ return an array of dinos
 router.get("/", (req, res) => {
-  const dinos = readDinos();
+  let dinos = readDinos();
+  if (req.query.dinoFilter) {
+    dinos = dinos.filter((dino) => {
+      // compare lower case strings for case insensitivity
+      console.log(dino);
+      return dino.name
+        .toLowerCase()
+        .includes(req.query.dinoFilter.toLowerCase());
+    });
+  }
   res.render("dinos/index", {
     dinos,
   });
@@ -41,6 +50,40 @@ router.get("/:id", (req, res) => {
     dino: thisDino,
     id: req.params.id,
   });
+});
+
+router.get("/edit/:id", (req, res) => {
+  let dinosaurs = fs.readFileSync("./dinosaurs.json");
+  let dinoData = JSON.parse(dinosaurs);
+  res.render("dinos/edit", {
+    dino: dinoData[req.params.id],
+    id: req.params.id,
+  });
+});
+
+// PUT /dinosaurs/:id -- PUT/PATCH new info from edit form to dino
+
+router.put("/:id", (req, res) => {
+  let dinosaurs = fs.readFileSync("./dinosaurs.json");
+  let dinoData = JSON.parse(dinosaurs);
+
+  // change name and type property of chosen dino to values from edit form
+  dinoData[req.params.id].name = req.body.name;
+  dinoData[req.params.id].type = req.body.type;
+
+  // save edited dino
+  fs.writeFileSync("./dinosaurs.json", JSON.stringify(dinoData));
+
+  // redirect back to dino index
+  res.redirect("/dinosaurs");
+});
+
+// DELETE /dinosaurs/:id -- DELETE a single dino @ :id
+router.delete("/:id", (req, res) => {
+  const dinos = readDinos();
+  dinos.splice(req.params.id, 1);
+  fs.writeFileSync("./dinosaurs.json", JSON.stringify(dinos));
+  res.redirect("/dinosaurs");
 });
 
 module.exports = router;

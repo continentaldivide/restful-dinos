@@ -2,11 +2,22 @@
 
 <h1>welcome to the dino page of the dino app 😎</h1>
 
+<form method="GET" action="/dinosaurs">
+  <label for="dinoSearch">Search:</label>
+  <input type="text" placeholder="search dino name..." name="dinoFilter" />
+
+  <button type="submit">search</button>
+</form>
+
 <ul>
   <% dinos.forEach((dino, i) => { %>
   <li>
     <%= dino.name %> is a <%= dino.type %>
     <a href="/dinosaurs/<%= i %>">more info</a>
+    <form method="POST" action="/dinosaurs/<%= i %>/?_method=DELETE">
+      <input type="submit" value="Delete" />
+    </form>
+    <a href="/dinosaurs/edit/<%= i %>"><button>Edit</button></a>
   </li>
   <% }) %>
 </ul>

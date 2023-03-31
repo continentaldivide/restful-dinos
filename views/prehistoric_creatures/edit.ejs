@@ -1,0 +1,11 @@
+<%- include("../partials/header.ejs") %>
+
+<form method="POST" action="/prehistoric_creatures/<%= id %>/?_method=PUT">
+  <label>Type</label>
+  <input type="text" name="type" value="<%= creature.type %>" />
+  <label>URL</label>
+  <input type="text" name="url" value="<%= creature.img_url %>" />
+  <input type="submit" />
+</form>
+
+<%- include("../partials/footer.ejs") %>

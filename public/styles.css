@@ -9,3 +9,16 @@ li,
 label {
   color: white;
 }
+
+button {
+  display: inline;
+  margin: 5px;
+}
+
+a {
+  color: darkgray;
+}
+
+a:visited {
+  color: rgb(79, 79, 79);
+}
