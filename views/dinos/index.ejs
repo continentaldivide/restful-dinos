@@ -1,0 +1,14 @@
+<%- include("../partials/header.ejs") %>
+
+<h1>welcome to the dino page of the dino app 😎</h1>
+
+<ul>
+  <% dinos.forEach((dino, i) => { %>
+  <li>
+    <%= dino.name %> is a <%= dino.type %>
+    <a href="/dinosaurs/<%= i %>">more info</a>
+  </li>
+  <% }) %>
+</ul>
+
+<%- include("../partials/footer.ejs") %>
