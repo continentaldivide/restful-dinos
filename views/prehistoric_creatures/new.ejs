@@ -1,0 +1,31 @@
+<%- include("../partials/header.ejs") %>
+
+<h1>create a new prehistoric creature:</h1>
+
+<!-- 
+    this form will create an object in the request body (req.body) 
+    the keys correspond to the name properties of the inputs
+    type: what the user typed in
+    name: what the user typed in
+-->
+
+<form method="POST" action="/prehistoric_creatures">
+  <label for="prehistoricCreatureType">Type:</label>
+  <input
+    id="prehistoricCreatureType"
+    type="text"
+    name="type"
+    placeholder="prehistoric creature type"
+  />
+
+  <label for="prehistoricCreatureURL">Image URL:</label>
+  <input
+    id="prehistoricCreatureURL"
+    type="text"
+    name="img_url"
+    placeholder="prehistoric creature URL"
+  />
+  <button type="submit">Create Prehistoric Creature</button>
+</form>
+
+<%- include("../partials/footer.ejs") %>

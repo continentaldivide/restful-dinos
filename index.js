@@ -5,20 +5,25 @@ const PORT = 8001;
 
 app.set("view engine", "ejs");
 app.use(express.urlencoded({ extended: false }));
+app.use(express.static("public"));
 
 app.use("/dinosaurs", require("./controllers/dinosaurs"));
+app.use(
+  "/prehistoric_creatures",
+  require("./controllers/prehistoric_creatures")
+);
 
 app.get("/", (req, res) => {
   res.render("index.ejs");
 });
 
-// helper function to read the dino db
+// // helper function to read the dino db
 
-const readDinos = () => {
-  const dinosaurs = fs.readFileSync("./dinosaurs.json");
-  const dinoData = JSON.parse(dinosaurs);
-  return dinoData;
-};
+// const readDinos = () => {
+//   const dinosaurs = fs.readFileSync("./dinosaurs.json");
+//   const dinoData = JSON.parse(dinosaurs);
+//   return dinoData;
+// };
 
 // // GET /dinosaurs -- READ return an array of dinos
 // app.get("/dinosaurs", (req, res) => {

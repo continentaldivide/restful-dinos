@@ -1,0 +1,15 @@
+<%- include("../partials/header.ejs") %>
+
+<h1>welcome to the prehistoric creature page of the dino app 😎</h1>
+
+<ul>
+  <% prehistoricCreatures.forEach((prehistoricCreature, i) => { %>
+  <li>
+    <a href="<%= prehistoricCreature.img_url %>">
+      <%= prehistoricCreature.type %></a
+    >
+  </li>
+  <% }) %>
+</ul>
+
+<%- include("../partials/footer.ejs") %>
